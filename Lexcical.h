@@ -6,6 +6,7 @@
 #include <vector>
 #include <iterator>
 
+
 using namespace std; // not a good way
 
 
@@ -69,5 +70,7 @@ public:
 	Tok* dfaPun(char*, int&);
 	Tok* dfaComment(char*,int&);
 	//DFA MEthods
+	// getter
+	long int getErrorNo() const;
 };
 

@@ -9,6 +9,10 @@ Lexcical::Lexcical(void):fLoc("test.pcl"),errorNo(0),TokenNo(0){
 }
 int Lexcical::side = 1;
 int Lexcical::filePtrLoc = 0;
+long int Lexcical::getErrorNo() const
+{
+	return errorNo;
+}
 
 Lexcical::~Lexcical(void)
 {
@@ -25,9 +29,9 @@ void Lexcical::fillBuff(char *des,char *sur,int dSt, int dEd)
 }
 bool Lexcical::isKeyword(string s)
 {
-	string keywrd[14] = { "program", "if", "then","else", "do" ,
+	string keywrd[16] = { "program", "if", "then","else", "do" ,
 						  "while", "integer", "real","function",
-						  "procedure","begin", "end", "not","var"};
+						  "procedure","begin", "end", "not","var", "array" , "of"};
 	for each (string var in keywrd)
 	{
 		if (s == var)
@@ -114,22 +118,22 @@ char* Lexcical::tokentype(ttype tp)
 	switch (tp)
 	{
 	case ID:
-		strcpy(rt,"ID");
+		strcpy(rt,"id");
 		break;
 	case NUM:
-		strcpy(rt,"NUM");
+		strcpy(rt,"num");
 		break;
 	case RELOP:
-		strcpy(rt,"RELOP");
+		strcpy(rt,"relop");
 		break;
 	case ADDOP:
-		strcpy(rt,"ADDOP");
+		strcpy(rt,"addop");
 		break;
 	case MULOP:
-		strcpy(rt,"MULOP");
+		strcpy(rt,"mulop");
 		break;
 	case ASSIGNOP:
-		strcpy(rt,"ASSIGNOP");
+		strcpy(rt,"assignop");
 		break;
 	case COMT:
 		strcpy(rt,"COMT");
@@ -153,6 +157,26 @@ void Lexcical::fileTok(const Tok *t, int len){
 
 	if (t->type != NONE	){
 		fstream file;
+		file.open("Tstream.txt",ios::out | ios::app );
+		if(!file){
+			cout<<"File could not be written"<<endl;
+			exit(0);
+		}
+		else{
+			if (t->type == ID || t->type == ADDOP || t->type == MULOP || t->type == RELOP || t->type == NUM || t->type == ASSIGNOP)
+			{
+				file<<tokentype(t->type)<<endl;
+				//file.ignore(256,'\n');
+			}
+			else if ( t->type == PUN || t->type == Keyword)
+			{
+				file<<t->str<<endl;
+				//file.ignore(256,'\n');
+			}
+			TokenNo++;
+		}
+/*
+		fstream file;
 		file.open("token.txt",ios::out | ios::app );
 		if(!file){
 			cout<<"File could not be written"<<endl;
@@ -162,7 +186,7 @@ void Lexcical::fileTok(const Tok *t, int len){
 			file<<setw(10)<<t->str<<setw(10)<<t->lenght<<setw(10)<<tokentype(t->type)<<endl;
 			TokenNo++;
 		}
-		file.close();
+		file.close();*/
 	}
 	else if(t->type == NONE	){
 		fstream file;
@@ -253,9 +277,9 @@ void Lexcical::lexRunner()
 		}	
 	}
 	cout<<"****************************************"<<endl;
-	cout<<"File Containing Tokens :: token.txt"<<"\tToken found ::"<<TokenNo<<endl;
+	cout<<"File Containing vaild Tokens stream:: Tstream.txt"<<"\tToken found ::"<<TokenNo<<endl;
 	cout<<"File Containing Errors :: errors.txt"<<"\tError found ::"<<errorNo<<endl;
-	cout<<"These files have been palced in root/working dir..."<<endl;
+	cout<<"These files have been palced in working dir..."<<endl;
 }
 void Lexcical::takeFile()
 {
@@ -740,7 +764,7 @@ Tok* Lexcical::dfaPun(char *input, int &i){
 	int countLenght=0;
 	string tmp;
 //	while (true){
-		if (input[i] == ',' || input[i] == ';' || input[i] == '(' || input[i] == ')' || input[i] == ':' || input[i] == '.'){
+		if (input[i] == ',' || input[i] == ';' || input[i] == '(' || input[i] == ')' || input[i] == ':' || input[i] == '.'){// [ ] ..
 			y = 0;
 			x = dfa[x][y]- 48;
 			countLenght++;
