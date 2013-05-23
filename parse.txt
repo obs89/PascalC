@@ -1,3 +1,4 @@
+36 30
 program@id@(@identifier_list@)@;@declarations@subprogram_declarations@compound_statement@. ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ 
 ^ id@IDL' ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ 
 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ! ! ,@id@IDL' ^ 
@@ -16,10 +17,10 @@ program@id@(@identifier_list@)@;@declarations@subprogram_declarations@compound_s
 ^ statement_list ^ ^ ^ ^ ^ ^ statement_list statement_list statement_list ^ ^ ^ ^ ^ ! ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ 
 ^ statement@SL' ^ ^ ^ ^ ^ ^ statement@SL' statement@SL' statement@SL'  ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ 
 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ! ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ;@statement@SL' 
-^ variable@assignop@expression|procedure_statement ^ ^ ^ ^ ^ ^ compound_statement while@expression@do@statement if@expression@then@statement@ST' ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ 
+^ id@STT' ^ ^ ^ ^ ^ ^ compound_statement while@expression@do@statement if@expression@then@statement@ST' ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ 
 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ else@statement ^ ^ ^ ^ ^ ! ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ! 
 ^ id@V' ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ 
-^ ! ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ! ^ ^ [@expression@] ^ ^ ^ ^ ^ ^ ^ ^ 
+^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ! ^ ^ [@expression@] ^ ^ ^ ^ ^ ^ ^ ^ 
 ^ id@PS' ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ 
 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ! ^ ^ ^ ^ ^ ! ^ ^ ^ ^ ^ ^ ^ (@expression_list@) ^ ^ ^ ! 
 ^ expression@EL' ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ expression@EL' expression@EL' ^ ^ ^ ^ ^ ^ ^ ^ ^ expression@EL' expression@EL' expression@EL' ^ ^ ^ ^ 
@@ -32,4 +33,5 @@ program@id@(@identifier_list@)@;@declarations@subprogram_declarations@compound_s
 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ! ^ ^ ! ! mulop@factor@T' ! ^ ! ! ^ ! ^ ^ ^ ! ^ ! ! 
 ^ id@F' ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ num (@expression@) ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ not@factor ^ ^ ^ ^ 
 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ! ^ ^ ! ! ! ! ^ ! ! ^ ! ^ ^ (@expression_list@) ! ^ ! ! 
-^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ + - ^ ^ ^ ^ ^   
+^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ + - ^ ^ ^ ^ ^
+^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ PS' ^ ^ ^ ^ ^ PS'  V'@assignop@expression ^ ^  V'@assignop@expression ^ ^ ^ PS' ^ ^ ^ PS'  

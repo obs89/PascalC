@@ -1,9 +1,12 @@
 #include "Lexcical.h"
 #include "Parser.h"
+#include "SymbolTable.h"
 #include <conio.h>
 int main ()
 {
 	Lexcical test;
+	SymbolTable t;
+	test.setT(&t);
 	test.lexRunner();
 	if (test.getErrorNo() > 0 )
 	{
@@ -22,7 +25,6 @@ int main ()
 		Parser p;
 		p.readToken();
 	}
-	
 	system("pause");
 	return 0;
 }

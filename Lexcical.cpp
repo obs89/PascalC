@@ -173,6 +173,10 @@ void Lexcical::fileTok(const Tok *t, int len){
 				file<<t->str<<endl;
 				//file.ignore(256,'\n');
 			}
+			if (t->type == ID)
+			{
+				T->addTokenType(t->str,tokentype(t->type));
+			}
 			TokenNo++;
 		}
 /*
@@ -202,6 +206,11 @@ void Lexcical::fileTok(const Tok *t, int len){
 		file.close();
 		
 	}
+}
+
+void Lexcical::setT(SymbolTable *a)
+{
+	T = a;
 }
 void Lexcical::notASymbol(char ch){
 	fstream file;
@@ -244,13 +253,13 @@ void Lexcical::lexRunner()
 	cout<<"File tokenization of "<<fLoc<<" has been started!!!"<<endl;
 	readbuff(buffer,bufPointer);
 	while (buffer[bufPointer] != '\0'){
-		tt[0] = dfaNumber(buffer,bufPointer);
+		tt[0] = dfaPun(buffer,bufPointer);
 		bufPointer = bufStart;
-		tt[1] = dfaIdentifier(buffer,bufPointer);
+		tt[1] = dfaNumber(buffer,bufPointer);
 		bufPointer = bufStart;
 		tt[2] = dfaDelim(buffer,bufPointer);
 		bufPointer = bufStart;
-		tt[3] = dfaPun(buffer,bufPointer);
+		tt[3] = dfaIdentifier(buffer,bufPointer);
 		bufPointer = bufStart;
 		tt[4] = dfaRelop(buffer,bufPointer);
 		bufPointer = bufStart;
@@ -271,7 +280,6 @@ void Lexcical::lexRunner()
 		}
 		else{
 			fileTok(tt[len],len);
-			//addToSymTable(tt[len]); removed to blocking issue
 			bufPointer += tt[len]->lenght;
 			bufStart = bufPointer;
 		}	
@@ -764,11 +772,19 @@ Tok* Lexcical::dfaPun(char *input, int &i){
 	int countLenght=0;
 	string tmp;
 //	while (true){
-		if (input[i] == ',' || input[i] == ';' || input[i] == '(' || input[i] == ')' || input[i] == ':' || input[i] == '.'){// [ ] ..
+		if (input[i] == ',' || input[i] == ';' || input[i] == '(' || input[i] == ')' || input[i] == ':' || input[i] == '.' || input[i] == '[' || input[i] == ']' ){// [ ] ..
 			y = 0;
 			x = dfa[x][y]- 48;
 			countLenght++;
 			tmp += input[i];
+		}
+		if (input[i] == '.' && input[i+1] == '.')
+		{
+			y = 0;
+			x = 1;
+			countLenght++;
+			tmp += input[i];
+			i++;// i couldnt bare it...
 		}
 //		else{
 	//		break;

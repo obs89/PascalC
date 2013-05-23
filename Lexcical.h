@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <vector>
 #include <iterator>
-
+#include "SymbolTable.h"
 
 using namespace std; // not a good way
 
@@ -43,10 +43,12 @@ private:
 	string fLoc;// file location
 	int errorNo;
 	int TokenNo;
+	SymbolTable *T;
 public:
 	Lexcical(void);
 	~Lexcical(void);
 	// helper Methods
+	void setT(SymbolTable *);
 	void fillBuff(char*,char*,int,int);
 	bool isKeyword(string);
 	void readbuff(char*,int&);

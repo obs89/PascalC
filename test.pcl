@@ -1,8 +1,9 @@
 program example(input, output);
 var x, y: integer;
+var monvs : array[ 1 .. 5 ] of integer;
 function gcd(a, b: integer) : integer;
 begin
-	if b = 0 then gcd := a
+	if b = 0.0 then gcd := a
 	else gcd := gcd(b, a mod b)
 end;
 begin
